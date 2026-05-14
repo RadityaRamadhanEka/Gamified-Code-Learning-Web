@@ -1,0 +1,29 @@
+/* ============================================================
+   NgodingAJG — Main CSS Entry Point
+   ============================================================ */
+
+/* === Base === */
+@import './base/_variables.css';
+@import './base/_reset.css';
+@import './base/_typography.css';
+
+/* === Components === */
+@import './components/_buttons.css';
+@import './components/_cards.css';
+@import './components/_progress.css';
+
+/* === Utilities === */
+@import './utilities/_animations.css';
+@import './utilities/_helpers.css';
+
+/* === Pages === */
+@import './pages/_landing.css';
+@import './pages/_auth.css';
+@import './pages/_dashboard.css';
+
+/* === Layouts === */
+@import './layouts/_sidebar.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

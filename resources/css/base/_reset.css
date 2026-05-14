@@ -1,0 +1,101 @@
+/* ============================================================
+   NgodingAJG — CSS Reset & Base Styles
+   ============================================================ */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--font-ui);
+    font-size: var(--text-base);
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* === Links === */
+a {
+    color: var(--text-accent);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--accent-blue-dark);
+}
+
+/* === Images === */
+img, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* === Lists === */
+ul, ol {
+    list-style: none;
+}
+
+/* === Buttons === */
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+}
+
+/* === Inputs === */
+input, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+/* === Code === */
+code, pre, kbd {
+    font-family: var(--font-code);
+}
+
+/* === HR === */
+hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+}
+
+/* === Selection === */
+::selection {
+    background: var(--accent-blue);
+    color: white;
+}
+
+/* === Scrollbar (Webkit) === */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
