@@ -9,7 +9,7 @@
             <img alt="User Profile Picture" class="w-12 h-12 rounded-full border border-primary/50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAERVSDcUfij6RUXG2Hyf2n3tydP2cj5745yW3nmzDfsVADsv7FmFGk4jlw4TswjjBZWERBsTa-BCV_S1Aoy0bLgUfiMbhkIaKMA0TcnPrSyALfqHDo5Dv7UbuwPJ05WTOOpC8YJJfm9YvKsw2OlpYx3LuhjDOZhX09eZ9S73tIERtH6vr4299Z41aQ8aeXArR1ln2L2eSzuzrXM4m2-uh-nTRWZAX5io5mTxaio-al4IQc6oYN3q-Na6jisJBo4hZoM6MDi2Gy4aY">
             <div>
                 <h2 class="font-bold text-on-surface truncate w-32" title="{{ Auth::user()->name ?? 'Alpha Dev' }}">{{ Auth::user()->name ?? 'Alpha Dev' }}</h2>
-                <p class="font-label-caps text-label-caps text-primary mt-1">Level 42 Master</p>
+                <p class="font-label-caps text-label-caps text-primary mt-1">Level {{ Auth::user()->level ?? 1 }}</p>
             </div>
         </div>
     </div>
@@ -32,23 +32,8 @@
                 <span class="font-label-caps text-label-caps">Leaderboard</span>
             </a>
         </li>
-        <li>
-            <a class="text-on-surface-variant hover:bg-white/5 px-4 py-3 flex items-center gap-3 rounded-lg hover:bg-surface-bright/20 hover:text-primary transition-all duration-300" href="#">
-                <span class="material-symbols-outlined">code</span>
-                <span class="font-label-caps text-label-caps">Proyek</span>
-            </a>
-        </li>
-        <li>
-            <a class="text-on-surface-variant hover:bg-white/5 px-4 py-3 flex items-center gap-3 rounded-lg hover:bg-surface-bright/20 hover:text-primary transition-all duration-300" href="#">
-                <span class="material-symbols-outlined">help</span>
-                <span class="font-label-caps text-label-caps">Bantuan</span>
-            </a>
-        </li>
     </ul>
     <div class="px-4 mt-auto space-y-4">
-        <button class="w-full bg-gradient-to-r from-primary to-secondary-container text-on-primary font-label-caps text-label-caps py-3 rounded-lg font-bold shadow-[0_0_15px_rgba(0,240,255,0.3)] hover:opacity-90 transition-opacity">
-            Upgrade to Pro
-        </button>
         <ul class="space-y-2">
             <li>
                 <a class="{{ request()->routeIs('profile.*') ? 'bg-primary/10 text-primary border-r-4 border-primary rounded-l-lg' : 'text-on-surface-variant hover:bg-white/5 hover:bg-surface-bright/20 hover:text-primary rounded-lg' }} px-4 py-2 flex items-center gap-3 transition-all duration-300" href="{{ route('profile.edit') }}">

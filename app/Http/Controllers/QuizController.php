@@ -30,23 +30,26 @@ class QuizController extends Controller
             404
         );
 
-        // Load questions WITHOUT correct answers
-        $questions = $quiz->questions()->get()->map(function ($q) {
+        // Load questions with correct answers for instant feedback
+        $questions = $quiz->questions()->orderBy('order')->get()->map(function ($q) {
             return [
                 'id' => $q->id,
                 'question' => $q->question,
                 'options' => $q->options,
+                'correct_answer' => $q->correct_answer,
                 'order' => $q->order,
-                // correct_answer is intentionally EXCLUDED for security
             ];
         });
+
+        // Build answer key map for JavaScript instant feedback
+        $answerKey = $questions->pluck('correct_answer', 'id');
 
         $previousAttempt = $user->quizAttempts()
             ->where('quiz_id', $quiz->id)
             ->latest()
             ->first();
 
-        return view('courses.quiz', compact('course', 'quiz', 'questions', 'previousAttempt', 'user'));
+        return view('courses.quiz', compact('course', 'quiz', 'questions', 'answerKey', 'previousAttempt', 'user'));
     }
 
     /**

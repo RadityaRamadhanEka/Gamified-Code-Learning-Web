@@ -20,6 +20,7 @@
 @import './pages/_landing.css';
 @import './pages/_auth.css';
 @import './pages/_dashboard.css';
+@import './pages/_help.css';
 
 /* === Layouts === */
 @import './layouts/_sidebar.css';
