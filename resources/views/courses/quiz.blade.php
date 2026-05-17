@@ -110,15 +110,57 @@
             function showQuestion(index) {
                 questions.forEach((q, i) => {
                     q.classList.toggle('hidden', i !== index);
+                    // Reset error state when showing
+                    if (i === index) {
+                        q.querySelector('.quiz-error-msg')?.remove();
+                        q.querySelectorAll('label > div').forEach(el => {
+                            el.classList.remove('border-error', 'shadow-[0_0_15px_rgba(255,80,80,0.3)]');
+                        });
+                    }
                 });
                 btnPrev.classList.toggle('hidden', index === 0);
                 btnNext.classList.toggle('hidden', index === total - 1);
                 btnSubmit.classList.toggle('hidden', index !== total - 1);
-                // Update all progress bars
-                const progressBars = document.querySelectorAll('.quiz-question:not(.hidden) .h-full.bg-gradient-to-r');
+            }
+
+            function isCurrentAnswered() {
+                const q = questions[current];
+                const radios = q.querySelectorAll('input[type="radio"]');
+                return Array.from(radios).some(r => r.checked);
+            }
+
+            function showAnswerError() {
+                const q = questions[current];
+                // Remove existing error
+                q.querySelector('.quiz-error-msg')?.remove();
+
+                // Highlight options
+                q.querySelectorAll('label > div').forEach(el => {
+                    el.classList.add('border-error', 'shadow-[0_0_15px_rgba(255,80,80,0.3)]');
+                });
+
+                // Show error message
+                const msg = document.createElement('p');
+                msg.className = 'quiz-error-msg text-error font-label-caps text-label-caps flex items-center gap-2 mt-2 animate-pulse';
+                msg.innerHTML = '<span class="material-symbols-outlined text-[16px]">warning</span> Pilih salah satu jawaban terlebih dahulu!';
+                q.querySelector('.grid').after(msg);
+
+                // Auto-clear highlight on any selection
+                q.querySelectorAll('input[type="radio"]').forEach(r => {
+                    r.addEventListener('change', function() {
+                        q.querySelector('.quiz-error-msg')?.remove();
+                        q.querySelectorAll('label > div').forEach(el => {
+                            el.classList.remove('border-error', 'shadow-[0_0_15px_rgba(255,80,80,0.3)]');
+                        });
+                    }, { once: true });
+                });
             }
 
             btnNext.addEventListener('click', function() {
+                if (!isCurrentAnswered()) {
+                    showAnswerError();
+                    return;
+                }
                 if (current < total - 1) {
                     current++;
                     showQuestion(current);
@@ -129,6 +171,14 @@
                 if (current > 0) {
                     current--;
                     showQuestion(current);
+                }
+            });
+
+            // Validate all answered before submit
+            btnSubmit?.addEventListener('click', function(e) {
+                if (!isCurrentAnswered()) {
+                    e.preventDefault();
+                    showAnswerError();
                 }
             });
 

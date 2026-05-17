@@ -30,13 +30,13 @@
             
             <div class="inline-flex items-center gap-2 bg-secondary/10 border border-secondary/20 px-4 py-1.5 rounded-full mb-6">
                 <span class="material-symbols-outlined text-secondary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">stars</span>
-                <span class="font-label-caps text-label-caps text-secondary-fixed">Level 42 Master</span>
+                <span class="font-label-caps text-label-caps text-secondary-fixed">Level {{ $user->level }}</span>
             </div>
             
             <div class="w-full">
                 <div class="flex justify-between items-end mb-2">
                     <span class="font-label-caps text-label-caps text-on-surface-variant">Total XP</span>
-                    <span class="font-code-sm text-code-sm text-primary font-bold">50,000</span>
+                    <span class="font-code-sm text-code-sm text-primary font-bold">{{ number_format($user->xp) }} XP</span>
                 </div>
                 <div class="h-2 w-full bg-surface-container-lowest rounded-full overflow-hidden border border-white/5">
                     <div class="h-full bg-gradient-to-r from-primary-container to-secondary-container w-[85%] shadow-[0_0_10px_rgba(0,240,255,0.5)] relative">
@@ -52,13 +52,13 @@
             <div class="grid grid-cols-2 gap-4">
                 <div class="bg-surface-container-lowest border border-white/5 rounded-lg p-4 flex flex-col items-center justify-center text-center hover:border-primary/30 transition-colors">
                     <span class="material-symbols-outlined text-tertiary-fixed mb-2" data-weight="fill" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
-                    <span class="font-display-lg text-display-lg md:text-[32px] text-on-surface mb-1">12</span>
-                    <span class="font-label-caps text-label-caps text-on-surface-variant">Badges Earned</span>
+                    <span class="font-display-lg text-display-lg md:text-[32px] text-on-surface mb-1">{{ $user->quizAttempts()->count() }}</span>
+                    <span class="font-label-caps text-label-caps text-on-surface-variant">Kuis Selesai</span>
                 </div>
                 <div class="bg-surface-container-lowest border border-white/5 rounded-lg p-4 flex flex-col items-center justify-center text-center hover:border-primary/30 transition-colors">
                     <span class="material-symbols-outlined text-primary-fixed mb-2" data-weight="fill" style="font-variation-settings: 'FILL' 1;">timer</span>
-                    <span class="font-display-lg text-display-lg md:text-[32px] text-on-surface mb-1">1,240</span>
-                    <span class="font-label-caps text-label-caps text-on-surface-variant">Coding Hours</span>
+                    <span class="font-display-lg text-display-lg md:text-[32px] text-on-surface mb-1">{{ $user->completedLessonsCount() }}</span>
+                    <span class="font-label-caps text-label-caps text-on-surface-variant">Lesson Selesai</span>
                 </div>
             </div>
         </div>
