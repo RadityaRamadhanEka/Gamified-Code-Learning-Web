@@ -89,17 +89,6 @@ Kontribusi selalu terbuka! Jika Anda memiliki ide fitur atau menemukan bug, sila
 4. Push ke Branch (`git push origin fitur/FiturMantap`)
 5. Buka Pull Request
 
----
-
-## 📝 Lisensi
-
-Project ini dilisensikan di bawah **MIT License**. Lihat file `LICENSE` untuk informasi lebih lanjut.
-
-## 👨‍💻 Author
-
-Dibuat dengan ❤️ oleh **Raditya Ramadhan Eka**
-- GitHub: [@RadityaRamadhanEka](https://github.com/RadityaRamadhanEka)
-- Portfolio: [radityaramadhan.com](https://radityaramadhan.com) *(opsional)*
 
 ---
 <p align="center">
