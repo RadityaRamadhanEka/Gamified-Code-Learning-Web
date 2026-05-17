@@ -3,10 +3,6 @@
         <h2 class="font-headline-lg text-headline-lg md:text-headline-lg-mobile font-bold hidden md:block">
             {{ $header ?? 'Dashboard' }}
         </h2>
-        <div class="bg-surface-container-high rounded-full px-4 py-1.5 flex items-center gap-2 border border-white/5">
-            <span class="text-tertiary-container">⚡</span>
-            <span class="font-code-sm text-code-sm font-bold text-on-surface">2,450 XP</span>
-        </div>
     </div>
     <div class="flex items-center gap-4">
         <button class="text-on-surface-variant hover:text-primary transition-colors duration-200">

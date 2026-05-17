@@ -52,8 +52,8 @@
         <ul class="space-y-2">
             <li>
                 <a class="{{ request()->routeIs('profile.*') ? 'bg-primary/10 text-primary border-r-4 border-primary rounded-l-lg' : 'text-on-surface-variant hover:bg-white/5 hover:bg-surface-bright/20 hover:text-primary rounded-lg' }} px-4 py-2 flex items-center gap-3 transition-all duration-300" href="{{ route('profile.edit') }}">
-                    <span class="material-symbols-outlined" {!! request()->routeIs('profile.*') ? 'style="font-variation-settings: \'FILL\' 1;"' : '' !!}>settings</span>
-                    <span class="font-label-caps text-label-caps">Settings</span>
+                    <span class="material-symbols-outlined" {!! request()->routeIs('profile.*') ? 'style="font-variation-settings: \'FILL\' 1;"' : '' !!}>person</span>
+                    <span class="font-label-caps text-label-caps">Profile</span>
                 </a>
             </li>
             <li>
