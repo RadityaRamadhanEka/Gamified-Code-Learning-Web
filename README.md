@@ -1,7 +1,5 @@
 # Ngoding-AJG (Gamified Code Learning Web)
 
-![Ngoding-AJG Banner](banner.png)
-
 <p align="center">
   <strong>Belajar Ngoding Jadi Asik, Menantang, dan Gak Ngebosenin!</strong>
 </p>
