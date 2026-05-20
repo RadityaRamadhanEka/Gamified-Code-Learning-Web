@@ -56,14 +56,16 @@
 
                     <!-- Options Grid -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 relative z-10 quiz-options-grid">
-                        @foreach($question['options'] as $option)
+                        @php $letters = ['A', 'B', 'C', 'D']; @endphp
+                        @foreach($question['options'] as $idx => $option)
+                        @php $optLetter = $letters[$idx] ?? 'A'; @endphp
                         <label class="relative group cursor-pointer quiz-option-label">
-                            <input type="radio" name="answers[{{ $question['id'] }}]" value="{{ $option }}" class="peer sr-only quiz-radio" required>
+                            <input type="radio" name="answers[{{ $question['id'] }}]" value="{{ $optLetter }}" class="peer sr-only quiz-radio" required>
                             <div class="quiz-option-card p-6 rounded-xl border border-outline-variant bg-surface-container-low hover:bg-surface-container hover:border-primary/50 peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:shadow-[0_0_20px_rgba(0,219,233,0.15)] peer-checked:[&_.radio-ring]:border-primary peer-checked:[&_.radio-dot]:scale-100 transition-all flex items-center gap-4">
                                 <div class="radio-ring w-6 h-6 rounded-full border-2 border-outline-variant group-hover:border-primary/50 flex items-center justify-center transition-colors">
                                     <div class="radio-dot w-2.5 h-2.5 rounded-full bg-primary scale-0 transition-transform"></div>
                                 </div>
-                                <span class="font-body-md text-body-md text-on-surface">{{ $option }}</span>
+                                <span class="font-body-md text-body-md text-on-surface"><span class="font-bold text-primary mr-2">{{ $optLetter }}.</span> {{ $option }}</span>
                             </div>
                         </label>
                         @endforeach
@@ -313,13 +315,16 @@
                     e.preventDefault();
                     checkAndShowFeedback(q);
                     
-                    // Auto submit after showing feedback
-                    setTimeout(() => {
-                        // Re-enable all radios before submitting
-                        document.querySelectorAll('.quiz-radio').forEach(r => r.disabled = false);
-                        document.getElementById('quiz-form').submit();
-                    }, 2000);
+                    // Change the button text to indicate they need to click again to close
+                    btnSubmit.innerHTML = `
+                        Tutup Kuis & Simpan
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">logout</span>
+                    `;
+                    btnSubmit.classList.add('animate-pulse');
+                    
+                    // Do NOT auto submit anymore. The user must click this button one more time.
                 } else {
+                    // They clicked the button again after seeing the feedback.
                     // Re-enable all radios before submitting
                     document.querySelectorAll('.quiz-radio').forEach(r => r.disabled = false);
                 }

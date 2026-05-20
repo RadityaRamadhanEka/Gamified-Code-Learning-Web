@@ -49,4 +49,33 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/badges', fn() => view('dashboard'))->name('badges.index');
 });
 
+// Admin Routes — Protected by auth + admin middleware
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
+    Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+
+    // Courses
+    Route::get('/courses', [\App\Http\Controllers\Admin\CourseController::class, 'index'])->name('courses.index');
+    Route::get('/courses/create', [\App\Http\Controllers\Admin\CourseController::class, 'create'])->name('courses.create');
+    Route::post('/courses', [\App\Http\Controllers\Admin\CourseController::class, 'store'])->name('courses.store');
+    Route::get('/courses/{course}/edit', [\App\Http\Controllers\Admin\CourseController::class, 'edit'])->name('courses.edit');
+    Route::put('/courses/{course}', [\App\Http\Controllers\Admin\CourseController::class, 'update'])->name('courses.update');
+    Route::delete('/courses/{course}', [\App\Http\Controllers\Admin\CourseController::class, 'destroy'])->name('courses.destroy');
+
+    // Quizzes
+    Route::get('/quizzes', [\App\Http\Controllers\Admin\QuizController::class, 'index'])->name('quizzes.index');
+    Route::get('/quizzes/create', [\App\Http\Controllers\Admin\QuizController::class, 'create'])->name('quizzes.create');
+    Route::post('/quizzes', [\App\Http\Controllers\Admin\QuizController::class, 'store'])->name('quizzes.store');
+    Route::get('/quizzes/{quiz}/edit', [\App\Http\Controllers\Admin\QuizController::class, 'edit'])->name('quizzes.edit');
+    Route::put('/quizzes/{quiz}', [\App\Http\Controllers\Admin\QuizController::class, 'update'])->name('quizzes.update');
+    Route::delete('/quizzes/{quiz}', [\App\Http\Controllers\Admin\QuizController::class, 'destroy'])->name('quizzes.destroy');
+
+    // Materials (Lessons)
+    Route::get('/materials', [\App\Http\Controllers\Admin\LessonController::class, 'index'])->name('materials.index');
+    Route::get('/materials/create', [\App\Http\Controllers\Admin\LessonController::class, 'create'])->name('materials.create');
+    Route::post('/materials', [\App\Http\Controllers\Admin\LessonController::class, 'store'])->name('materials.store');
+    Route::get('/materials/{lesson}/edit', [\App\Http\Controllers\Admin\LessonController::class, 'edit'])->name('materials.edit');
+    Route::put('/materials/{lesson}', [\App\Http\Controllers\Admin\LessonController::class, 'update'])->name('materials.update');
+    Route::delete('/materials/{lesson}', [\App\Http\Controllers\Admin\LessonController::class, 'destroy'])->name('materials.destroy');
+});
+
 require __DIR__.'/auth.php';
